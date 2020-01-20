@@ -1,6 +1,9 @@
 #!/bin/bash
 set -x
 
+# Kubernetes package version to install
+K8S_VERSION=1.16.1-00
+
 # Disable swap until next reboot
 sudo swapoff -a
 
@@ -29,5 +32,5 @@ systemctl restart docker.service
 sudo sh -c "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -"
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt-get update
-sudo apt-get install -y kubeadm=1.16.1-00 kubelet=1.16.1-00 kubectl=1.16.1-00
+sudo apt-get install -y kubeadm=$K8S_VERSION kubelet=$K8S_VERSION kubectl=$K8S_VERSION
 sudo apt-mark hold kubelet kubeadm kubectl
