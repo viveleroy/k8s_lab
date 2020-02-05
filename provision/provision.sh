@@ -14,7 +14,8 @@ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 sudo apt-get update && sudo apt-get upgrade -y
 # Install Docker
 sudo apt-get install -y docker.io
-# Setup daemon.
+
+# Setup Docker daemon
 cat > /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
@@ -31,7 +32,6 @@ mkdir -p /etc/systemd/system/docker.service.d
 systemctl enable docker.service
 systemctl restart docker.service
 # Install kubeadm and kubectl
-# sudo sh -c "echo 'deb http://apt.kubernetes.io/ kubernetes-bionic main' >> /etc/apt/sources.list.d/kubernetes.list"
 sudo sh -c "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -"
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt-get update

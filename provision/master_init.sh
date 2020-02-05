@@ -13,6 +13,6 @@ kubectl get node
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
-wget https://github.com/derailed/k9s/releases/download/v0.13.0/k9s_0.13.0_Linux_x86_64.tar.gz
-tar -xzf k9s_0.13.0_Linux_x86_64.tar.gz
+wget https://github.com/derailed/k9s/releases/download/v0.13.7/k9s_0.13.7_Linux_x86_64.tar.gz
+tar -xzf k9s_0.13.7_Linux_x86_64.tar.gz
 sudo mv k9s /usr/local/bin/
