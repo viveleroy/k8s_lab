@@ -7,6 +7,9 @@ K8S_VERSION=1.16.1-00
 # Disable swap until next reboot
 sudo swapoff -a
 
+# Disable swap permanently
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
 # Update the local node
 sudo apt-get update && sudo apt-get upgrade -y
 # Install Docker
