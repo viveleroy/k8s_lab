@@ -1,6 +1,7 @@
 #!/bin/bash
-set -x
-ADVERTISE_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
+set -x 
+INTERFACE=$(ip link | grep -o -E -w 'enp[0-9]+s[0-9]+|eth[0-9]+')
+ADVERTISE_IP=$(ip addr show $INTERFACE | grep -Po 'inet \K[\d.]+')
 sudo kubeadm init --apiserver-advertise-address $ADVERTISE_IP --kubernetes-version 1.16.1 --pod-network-cidr 192.168.0.0/16
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
