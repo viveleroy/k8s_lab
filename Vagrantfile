@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "master" do |master|
     master.vm.hostname = "master"
-    # master.vm.network "private_network", ip: "192.168.33.20"
+    master.vm.network "private_network", ip: "192.168.33.20"
     master.vm.provision "shell", path: "provision/master_init.sh", privileged: false
     for p in [:virtualbox, :libvirt, :hyperv] do
       master.vm.provider p do |provider|
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
   (1..2).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "node#{i}"
-      # node.vm.network "private_network", ip: "192.168.33.2#{i}"
+      node.vm.network "private_network", ip: "192.168.33.2#{i}"
       for p in [:virtualbox, :libvirt, :hyperv] do
         node.vm.provider p do |provider|
           provider.memory = 2048
