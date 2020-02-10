@@ -1,4 +1,5 @@
 @echo off
 vagrant up --provider hyperv
+echo Join command:
 vagrant ssh master -c "sudo kubeadm token create --print-join-command"
-echo "Run vagrant ssh node1 -c ""if [[ ! -e ""provisioned.txt"" ]]; then sudo <<<<output previous command>>>> ;touch provisioned.txt; fi"
+echo vagrant ssh node[n] -c ^"if [[ ! -e ^"provisioned.txt^" ]]; then sudo [join command] ;touch provisioned.txt; fi^"
