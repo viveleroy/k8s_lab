@@ -37,3 +37,18 @@ sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt-get update
 sudo apt-get install -y kubeadm=$K8S_VERSION kubelet=$K8S_VERSION kubectl=$K8S_VERSION
 sudo apt-mark hold kubelet kubeadm kubectl
+
+# Bugfix for: 
+# kubectl exec return error: unable to upgrade connection: pod does not exist
+# https://github.com/kubernetes/kubernetes/issues/63702
+KUBELET_CONF=/etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+VAGRANT_IP=$(hostname -I | tr ' ' '\n'  | grep 192.168.33.2)
+NODE_IP_ENV=Environment=\"KUBELET_EXTRA_ARGS=--node-ip=$VAGRANT_IP\"
+if ! grep $NODE_IP_ENV $KUBELET_CONF; then
+  PATTERN="EnvironmentFile\=\-\/etc\/default\/kubelet"
+  sudo sed -i "/$PATTERN/ a $NODE_IP_ENV" $KUBELET_CONF
+  sudo systemctl daemon-reload
+  sudo systemctl restart kubelet
+else
+  echo "Node IP already configured"
+fi
