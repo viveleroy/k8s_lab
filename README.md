@@ -4,6 +4,8 @@ Kubernetes v1.16
 
 ## Build cluster
 
+### Virtualbox / libvirt
+
 Run: `./cluster_up.sh`
 
 You get these VMs:
@@ -14,6 +16,19 @@ You get these VMs:
   | node1  | 192.168.33.21 |
   | node2  | 192.168.33.22 |
 
+### Hyper-V
+
+Run: `./cluster_up.ps1`
+
+Vagrant will ask which network switch to bind per node. Keep an eye on your console.
+
+You get these VMs:
+
+  | name   | IP                          |
+  | ------ | --------------------------- |
+  | master | Only known after deployment |
+  | node1  | ^ |
+  | node2  | ^ |
 
 Access them by `vagrant ssh <machine_name>`
 
