@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/bionic64"
+  # config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "bento/ubuntu-18.04"
   config.vm.provision "shell", path: "provision/provision.sh"
 
   # Disable vbguest autoupdate
