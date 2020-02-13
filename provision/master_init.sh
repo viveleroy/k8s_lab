@@ -1,4 +1,5 @@
 #!/bin/bash
+K9S_VERSION=0.13.8
 set -x
 
 sudo kubeadm init --apiserver-advertise-address 192.168.33.20 --kubernetes-version 1.16.1 --pod-network-cidr 172.16.0.0/16
@@ -18,6 +19,6 @@ kubectl get node
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
-wget https://github.com/derailed/k9s/releases/download/v0.13.7/k9s_0.13.7_Linux_x86_64.tar.gz
-tar -xzf k9s_0.13.7_Linux_x86_64.tar.gz
+wget https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
+tar -xzf k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
 sudo mv k9s /usr/local/bin/
