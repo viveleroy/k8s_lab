@@ -1,7 +1,7 @@
 #!/bin/bash
 K9S_VERSION=0.13.8
 set -x
-sudo kubeadm init --apiserver-advertise-address 192.168.33.20 --kubernetes-version 1.16.1 --pod-network-cidr 192.168.0.0/16
+sudo kubeadm init --apiserver-advertise-address 192.168.33.20 --kubernetes-version 1.16.1 --pod-network-cidr 172.16.0.0/16
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config

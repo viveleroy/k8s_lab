@@ -11,7 +11,7 @@ sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
 # Update the local node
-sudo apt-get update && sudo apt-get upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 # Install Docker
 sudo apt-get install -y docker.io
 
