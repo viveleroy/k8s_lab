@@ -16,6 +16,8 @@ sed -i 's/192.168.0.0\/16/172.16.0.0\/16/' calico.yaml
 kubectl apply -f rbac-kdd.yaml
 kubectl apply -f calico.yaml
 kubectl get node
+# Ensure using latest bash-completion
+sudo apt install bash-completion -y -f
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
