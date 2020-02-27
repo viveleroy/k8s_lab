@@ -9,6 +9,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # Download Calico plugin and RBAC YAML files and apply
 curl -sSL https://tinyurl.com/yb4xturm -o rbac-kdd.yaml
 curl -sSL https://tinyurl.com/y2vqsobb -o calico.yaml
+sed -i 's/192.168.0.0\/16/172.16.0.0\/16/' calico.yaml
 kubectl apply -f rbac-kdd.yaml
 kubectl apply -f calico.yaml
 kubectl get node
