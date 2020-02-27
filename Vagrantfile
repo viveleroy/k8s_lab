@@ -33,7 +33,8 @@ Vagrant.configure("2") do |config|
       node.vm.network "private_network", ip: "192.168.33.2#{i}"
       for p in [:virtualbox, :libvirt, :hyperv] do
         node.vm.provider p do |provider|
-          provider.memory = 2048
+          provider.memory = 1024
+          provider.maxmemory = 2048
           provider.cpus = 2
         end
       end
